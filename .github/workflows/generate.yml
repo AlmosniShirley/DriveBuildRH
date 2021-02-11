@@ -42,8 +42,7 @@ jobs:
       - name: Setup
         run: |
           sudo apt install libreoffice
-          sudo apt install go
-          go get -u github.com/odeke-em/drive/cmd/drive
+          #go get -u github.com/odeke-em/drive/cmd/drive
           
       - name: Generate
         run: soffice --convert-to pdf docs/test.odt
