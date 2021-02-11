@@ -34,4 +34,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          sudo apt install libreoffice
+          echo sudo apt install libreoffice
+          echo sudo apt install go
+          echo go get -u github.com/odeke-em/drive/cmd/drive
+          ls
