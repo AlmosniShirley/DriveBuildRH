@@ -36,7 +36,9 @@ jobs:
 
       - name: Push
         run: |
-          sudo /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
-          /usr/local/go/bin/drive
+          /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
+          echo $DRIVE_JSON > d.json
+          $HOME/go/bin/drive
+          rm d.json
 
           
