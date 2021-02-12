@@ -5,4 +5,4 @@ mkdir $HOME/secrets
 # --batch to prevent interactive command
 # --yes to assume "yes" for questions
 gpg --quiet --batch --yes --decrypt --passphrase="$SECRET" \
---output $HOME/secrets/drive.json internal/drive.json.gpg
+--output $HOME/secrets/drive.json .github/drive/drive.json.gpg

@@ -32,7 +32,7 @@ jobs:
           sudo tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz
                     
       - name: Generate
-        run: soffice --convert-to pdf docs/test.odt
+        run: soffice --convert-to pdf docs/test.odt --outdir pdfs
       
       - name: Decrypt
         run: ./decrypt.sh
@@ -44,7 +44,7 @@ jobs:
           /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
           ls -al $HOME/secrets
           $HOME/go/bin/drive init --service-account-file $HOME/secrets/drive.json
-          $HOME/go/bin/drive push docs
-          $HOME/go/bin/drive pub docs
+          $HOME/go/bin/drive push pdfs
+          $HOME/go/bin/drive pub pdfs
           
           
