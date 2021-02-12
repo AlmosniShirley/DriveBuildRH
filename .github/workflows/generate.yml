@@ -33,14 +33,17 @@ jobs:
                     
       - name: Generate
         run: echo soffice --convert-to pdf docs/test.odt
-
-      - name: Push
+      
+      - name: Decrypt
+        run: ./decrypt.sh
         env: # Or as an environment variable
           KEY: ${{ secrets.KEY }}
+      
+      - name: Push
         run: |
           echo /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
-          gpg --quiet --batch --yes --decrypt --passphrase="$KEY" --output $HOME/internal/drive.json.gpg
           ll
+          ll secrets
           #$HOME/go/bin/drive init --service-account-file d.json
           #$HOME/go/bin/drive push docs
           #$HOME/go/bin/drive pub docs
