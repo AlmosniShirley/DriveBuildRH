@@ -37,10 +37,12 @@ jobs:
       - name: Push
         env: # Or as an environment variable
           DRIVE_JSON: ${{ secrets.DRIVE_JSON }}
+          SECR: ${{secrets.TEST_SECRET }}
         run: |
           #/usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
           echo $DRIVE_JSON > d.json
           ls -al
+          echo Secr = $SECR
           echo A
           cat d.json
           echo B
