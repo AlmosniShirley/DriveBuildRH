@@ -29,7 +29,7 @@ jobs:
         run: |
           sudo apt install libreoffice
           wget https://dl.google.com/go/go1.15.6.linux-amd64.tar.gz
-          sudo tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
+          sudo tar -C /usr/local -xzf go1.15.6.linux-amd64.tar.gz
           sudo /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
           
       - name: Generate
