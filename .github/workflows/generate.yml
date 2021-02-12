@@ -28,28 +28,21 @@ jobs:
       - name: Setup
         run: |
           echo sudo apt install libreoffice
-          echo wget https://dl.google.com/go/go1.15.8.linux-amd64.tar.gz
-          echo sudo tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz
+          # wget https://dl.google.com/go/go1.15.8.linux-amd64.tar.gz
+          # sudo tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz
                     
       - name: Generate
         run: echo soffice --convert-to pdf docs/test.odt
 
       - name: Push
         env: # Or as an environment variable
-          DRIVE_JSON: ${{ secrets.DRIVE_JSON }}
-          SECR: ${{secrets.TEST_SECRET }}
+          KEY: ${{ secrets.KEY }}
         run: |
-          #/usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
-          echo $DRIVE_JSON > d.json
-          ls -al
-          echo Secr = $SECR
-          echo A
-          cat d.json
-          echo B
-          cat docs/test.odt
+          echo /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
+          gpg --quiet --batch --yes --decrypt --passphrase="$KEY" --output $HOME/internal/drive.json.gpg
+          ll
           #$HOME/go/bin/drive init --service-account-file d.json
           #$HOME/go/bin/drive push docs
           #$HOME/go/bin/drive pub docs
-          rm d.json
-
+          
           
