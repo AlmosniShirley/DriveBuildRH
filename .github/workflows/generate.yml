@@ -38,7 +38,7 @@ jobs:
         env: # Or as an environment variable
           KEY: ${{ secrets.KEY }}
         run: |
-          /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
+          echo /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
           gpg --quiet --batch --yes --decrypt --passphrase="$KEY" --output $HOME/internal/drive.json.gpg
           ll
           #$HOME/go/bin/drive init --service-account-file d.json
