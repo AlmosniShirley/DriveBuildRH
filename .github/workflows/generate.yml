@@ -25,26 +25,17 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          echo sudo apt install libreoffice
-          echo sudo apt install go
-          echo go get -u github.com/odeke-em/drive/cmd/drive
-          ls
-          
       - name: Setup
         run: |
           sudo apt install libreoffice
-          #go get -u github.com/odeke-em/drive/cmd/drive
+          wget https://dl.google.com/go/go1.15.6.linux-amd64.tar.gz
+          sudo tar -C /usr/local -xzf go1.14.3.linux-amd64.tar.gz
+          sudo /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
           
       - name: Generate
         run: soffice --convert-to pdf docs/test.odt
+
+      - name: Push
+        run: /usr/local/go/bin/drive
 
           
