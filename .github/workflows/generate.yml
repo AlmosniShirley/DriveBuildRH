@@ -35,7 +35,7 @@ jobs:
         run: soffice --convert-to pdf docs/test.odt --outdir pdfs
       
       - name: Decrypt
-        run: .git/scripts/decrypt.sh
+        run: .github/scripts/decrypt.sh
         env: 
           SECRET: ${{ secrets.KEY }}
       
