@@ -30,7 +30,6 @@ jobs:
           sudo apt install libreoffice
           wget https://dl.google.com/go/go1.15.8.linux-amd64.tar.gz
           sudo tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz
-          /usr/local/go/bin/go
                     
       - name: Generate
         run: soffice --convert-to pdf docs/test.odt
