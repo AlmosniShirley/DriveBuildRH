@@ -37,7 +37,7 @@ jobs:
       - name: Decrypt
         run: ./decrypt.sh
         env: 
-          SECRET: ${{ Test.KEY }}
+          SECRET: ${{ secrets.KEY }}
       
       - name: Push
         run: |
