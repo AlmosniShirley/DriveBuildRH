@@ -42,9 +42,9 @@ jobs:
       - name: Push
         run: |
           echo /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
-          ll
-          ll secrets
-          #$HOME/go/bin/drive init --service-account-file d.json
+          ls -al
+          ls -al secrets
+          #$HOME/go/bin/drive init --service-account-file secrets/drive.json
           #$HOME/go/bin/drive push docs
           #$HOME/go/bin/drive pub docs
           
