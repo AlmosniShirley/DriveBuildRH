@@ -68,13 +68,13 @@ jobs:
           $HOME/go/bin/drive init --service-account-file $HOME/secrets/drive.json
           
       - name: PushMain
-        if: ${{ !github.event.issue.pull_request }}
+        if: ${{ !github.base_ref }}
         run: |
           $HOME/go/bin/drive push pdf
           $HOME/go/bin/drive pub pdf
         
       - name: PushPR
-        if: ${{ github.event.issue.pull_request }}
+        if: ${{ github.base_ref }}
         run: |
           mv pdf pdf_pr      
           $HOME/go/bin/drive push pdf_pr
