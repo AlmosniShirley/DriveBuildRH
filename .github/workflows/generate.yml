@@ -27,13 +27,36 @@ jobs:
       
       - name: Setup
         run: |
-          sudo apt install libreoffice
+          sudo apt install libreoffice texlive pandoc
           wget https://dl.google.com/go/go1.15.8.linux-amd64.tar.gz
           sudo tar -C /usr/local -xzf go1.15.8.linux-amd64.tar.gz
                     
       - name: Generate
-        run: soffice --convert-to pdf docs/test.odt --outdir pdfs
-      
+        run: |
+          mkdir pdf
+          # ODT to PDF
+          for f in src/docs/odt/*.odt; do
+            soffice --convert-to pdf $f --outdir pdf
+          done
+          # FODT to PDF
+          for f in src/docs/xml/*.fodt; do
+            soffice --convert-to pdf $f --outdir pdf
+          done
+          # MD to PDF
+          for f in src/docs/md/*.md; do
+            file=`basename $f .md`
+            pandoc $f -o pdf/$file.pdf
+          done
+          # Docx to do later
+          # PDF - no transfo
+          for f in src/docs/pdf/*.pdf; do
+            cp $f pdf
+          done
+          # Tex to PDF
+          for f in src/docs/tex/*.tex; do
+            file=`basename $f .md`
+            pandoc $f -o pdf/$file.pdf
+          done
       - name: Decrypt
         run: .github/scripts/decrypt.sh
         env: 
