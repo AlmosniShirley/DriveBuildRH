@@ -67,7 +67,7 @@ jobs:
           /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
           ls -al $HOME/secrets
           $HOME/go/bin/drive init --service-account-file $HOME/secrets/drive.json
-          $HOME/go/bin/drive push pdfs
-          $HOME/go/bin/drive pub pdfs
+          $HOME/go/bin/drive push pdf
+          $HOME/go/bin/drive pub pdf
           
           
