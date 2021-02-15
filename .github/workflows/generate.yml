@@ -61,13 +61,24 @@ jobs:
         run: .github/scripts/decrypt.sh
         env: 
           SECRET: ${{ secrets.KEY }}
-      
-      - name: Push
+     
+      - name: PreparePush
         run: |
           /usr/local/go/bin/go get -u github.com/odeke-em/drive/cmd/drive
-          ls -al $HOME/secrets
           $HOME/go/bin/drive init --service-account-file $HOME/secrets/drive.json
+          
+      - name: PushMain
+        if: ${{ !github.event.issue.pull_request }}
+        run: |
           $HOME/go/bin/drive push pdf
           $HOME/go/bin/drive pub pdf
-          
-          
+        
+      - name: PushPR
+        if: ${{ github.event.issue.pull_request }}
+        run: |
+          mv pdf pdf_pr      
+          $HOME/go/bin/drive push pdf_pr
+          $HOME/go/bin/drive pub pdf_pr
+
+
+
